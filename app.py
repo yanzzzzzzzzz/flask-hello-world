@@ -9,6 +9,8 @@ from linebot.models import *
 import os
 from dotenv import load_dotenv
 
+from util import starluxPriceRequest
+
 load_dotenv()
 app = Flask(__name__)
 # LINE BOT info
@@ -40,4 +42,5 @@ def handle_message(event):
     user_id = event.source.user_id
     reply_token = event.reply_token
     message = "CC" + event.message.text
-    line_bot_api.reply_message(reply_token, TextSendMessage(text=message))
+    output_str = starluxPriceRequest([["2023-05-13", "2023-05-17"]])
+    line_bot_api.reply_message(reply_token, TextSendMessage(text=output_str))
