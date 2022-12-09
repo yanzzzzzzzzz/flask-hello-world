@@ -7,10 +7,13 @@ from linebot.exceptions import (
 )
 from linebot.models import *
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
 app = Flask(__name__)
 # LINE BOT info
-line_bot_api = LineBotApi(os.environ.get('CHANNEL_ACESS_TOKEN'))
-handler = WebhookHandler(os.environ.get('CHANNEL_SECRET'))
+line_bot_api = LineBotApi(os.getenv('CHANNEL_ACESS_TOKEN'))
+handler = WebhookHandler(os.getenv('CHANNEL_SECRET'))
 
 
 @app.route('/')
